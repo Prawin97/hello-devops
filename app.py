@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return """
-    <h1>🚀 Hello DevOps v2</h1>
+    <h1>🚀 Hello DevOps v3</h1>
     <h2>Version 2</h2>
     <p>Welcome to my CI/CD Pipeline</p>
     """
