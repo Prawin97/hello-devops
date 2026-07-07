@@ -7,7 +7,7 @@ def home():
     return """
     <h1>🚀 Hello Praveen!</h1>
     <h2>Welcome to DBS</h2>
-    <p>CI/CD Pipeline</p>
+    <p>CI/CD Pipeline v22</p>
     """
 
 if __name__ == "__main__":
