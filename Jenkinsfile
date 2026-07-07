@@ -54,7 +54,7 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Update Kubernetes Manifest') {
             steps {
                 sh '''
@@ -63,7 +63,7 @@ pipeline {
                 '''
             }
         }    
-    }
+    
 
         stage('Commit and Push Changes') {
             steps {
