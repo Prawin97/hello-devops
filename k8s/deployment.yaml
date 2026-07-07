@@ -20,7 +20,7 @@ spec:
       containers:
       - name: hello-devops
 
-        image: praveen777/hello-devops:v13
+        image: praveen777/hello-devops:v14
 
         imagePullPolicy: Always
 
