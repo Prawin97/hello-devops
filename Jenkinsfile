@@ -53,7 +53,8 @@ pipeline {
                 git config --global user.email "jenkins@example.com"
                 '''
             }
-
+        }
+        
         stage('Update Kubernetes Manifest') {
             steps {
                 sh '''
