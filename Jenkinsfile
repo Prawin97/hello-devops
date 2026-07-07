@@ -46,6 +46,41 @@ pipeline {
             }
         }
 
+        stage('Configure Git') {
+            steps {
+                sh '''
+                git config --global user.name "Jenkins"
+                git config --global user.email "jenkins@example.com"
+                '''
+            }
+
+        stage('Update Kubernetes Manifest') {
+            steps {
+                sh '''
+                sed -i.bak "s|image: .*|image: ${IMAGE_NAME}:${IMAGE_TAG}|g" k8s/deployment.yaml
+                rm -f k8s/deployment.yaml.bak
+                '''
+            }
+        }    
+    }
+
+        stage('Commit and Push Changes') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'github-creds',
+                    usernameVariable: 'GIT_USER',
+                    passwordVariable: 'GIT_TOKEN'
+                )]) {
+                    sh '''
+                    git add k8s/deployment.yaml
+
+                    git commit -m "Update image to ${IMAGE_TAG}" || true
+
+                    git push https://${GIT_USER}:${GIT_TOKEN}@github.com/Prawin97/hello-devops.git HEAD:master
+                    '''
+                }
+            }
+        }
         stage('List Docker Images') {
             steps {
                 sh 'docker images'
