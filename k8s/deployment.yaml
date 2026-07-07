@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hello-devops
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: hello-devops
+
+  template:
+    metadata:
+      labels:
+        app: hello-devops
+
+    spec:
+      containers:
+      - name: hello-devops
+
+        image: praveen777/hello-devops:v1
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 8000
